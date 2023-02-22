@@ -1,12 +1,14 @@
 import { Component } from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
 import css from './Searchbar.module.css';
 
 class Searchbar extends Component {
   state = {
     search: '',
   };
+
   handleSubmit = e => {
-    e.preventdefault();
+    e.preventDefault();
     const { onSubmit } = this.props;
     onSubmit({ ...this.state });
     this.reset();
@@ -21,11 +23,12 @@ class Searchbar extends Component {
   };
 
   render() {
+    const { search } = this.state;
     return (
       <header className={css.searchbar}>
         <form className={css.searchForm} onSubmit={this.handleSubmit}>
           <button type="submit" className={css.SearchFormBtn}>
-            <span className={css.btnLabel}>Search</span>
+            <AiOutlineSearch className={css.btnLabel} />
           </button>
 
           <input
@@ -36,7 +39,8 @@ class Searchbar extends Component {
             autoFocus
             placeholder="Search images and photos"
             onChange={this.handleChange}
-            value={this.search}
+            value={search}
+            required
           />
         </form>
       </header>

@@ -1,14 +1,14 @@
-import css from './ImageGallery.module.css';
-import PropTypes from 'prop-types';
+import css from './ImageGalleryItem.module.css';
+// import PropTypes from 'prop-types';
 
-const imgGalleryItem = () => {
+const ImgGalleryItem = ({ alt, url }) => {
   return (
     <li className={css.ImageGalleryItem}>
-      <img className={css.ImageGalleryItemImage} src="" alt="" />
+      <img className={css.ImageGalleryItemImage} src={url} alt={alt} />
     </li>
   );
 };
 
-export default imgGalleryItem;
+export default ImgGalleryItem;
 
-imgGalleryItem.propTypes = {};
+// imgGalleryItem.propTypes = {};
