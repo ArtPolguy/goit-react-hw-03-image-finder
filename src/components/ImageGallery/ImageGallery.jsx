@@ -1,9 +1,10 @@
 import ImgGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
+// import Modal from 'components/Modal/Modal';
 import css from './ImageGallery.module.css';
 
 const ImageGallery = ({ images }) => {
-  const items = images.map(img => (
-    <ImgGalleryItem key={img.id} url={img.webformatURL} alt={img.tags} />
+  const items = images.map(({ id, webformatURL, tags }) => (
+    <ImgGalleryItem key={id} url={webformatURL} alt={tags} />
   ));
   return <ul className={css.imageGallery}>{items}</ul>;
 };

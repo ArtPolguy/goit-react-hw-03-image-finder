@@ -1,6 +1,7 @@
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
+import Modal from 'shared/components/Modals/Modal';
 import { Component } from 'react';
 import css from './App.module.css';
 import { searchImg } from 'shared/api/img-api';
@@ -53,6 +54,9 @@ export class App extends Component {
         <ImageGallery images={images} />
         {loading && <p>...Loading images</p>}
         {Boolean(images.length) && <Button onClick={loadMore} />}
+        <Modal>
+          <div></div>
+        </Modal>
       </div>
     );
   }
