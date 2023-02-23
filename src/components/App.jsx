@@ -2,6 +2,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from 'shared/components/Modals/Modal';
+import ModalImg from './Modal/ModalImg';
 import { Component } from 'react';
 import css from './App.module.css';
 import { searchImg } from 'shared/api/img-api';
@@ -13,6 +14,8 @@ export class App extends Component {
     loading: false,
     error: null,
     page: 1,
+    showModal: false,
+    modalDetails: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -43,20 +46,37 @@ export class App extends Component {
   loadMore = () => {
     this.setState(({ page }) => ({ page: page + 1 }));
   };
+  showModalImg = ({ largeImageURL, tags }) => {
+    this.setState({
+      modalDetails: {
+        largeImageURL,
+        tags,
+      },
+      showModal: true,
+    });
+  };
+  closeModal = () => {
+    this.setState({
+      showModal: false,
+      modalDetails: null,
+    });
+  };
 
   render() {
-    const { loading, images } = this.state;
-    const { searchImage, loadMore } = this;
+    const { loading, images, showModal, modalDetails } = this.state;
+    const { searchImage, loadMore, showModalImg, closeModal } = this;
 
     return (
       <div className={css.app}>
         <Searchbar onSubmit={searchImage} />
-        <ImageGallery images={images} />
+        <ImageGallery images={images} showModalImg={showModalImg} />
         {loading && <p>...Loading images</p>}
         {Boolean(images.length) && <Button onClick={loadMore} />}
-        <Modal>
-          <div></div>
-        </Modal>
+        {showModal && (
+          <Modal close={closeModal}>
+            <ModalImg {...modalDetails} />
+          </Modal>
+        )}
       </div>
     );
   }
