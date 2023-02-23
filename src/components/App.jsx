@@ -3,6 +3,8 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from 'shared/components/Modals/Modal';
 import ModalImg from './Modal/ModalImg';
+
+import { Watch } from 'react-loader-spinner';
 import { Component } from 'react';
 import css from './App.module.css';
 import { searchImg } from 'shared/api/img-api';
@@ -70,7 +72,9 @@ export class App extends Component {
       <div className={css.app}>
         <Searchbar onSubmit={searchImage} />
         <ImageGallery images={images} showModalImg={showModalImg} />
-        {loading && <p>...Loading images</p>}
+        {loading && (
+          <Watch wrapperStyle={{ display: 'flex', justifyContent: 'center' }} />
+        )}
         {Boolean(images.length) && <Button onClick={loadMore} />}
         {showModal && (
           <Modal close={closeModal}>

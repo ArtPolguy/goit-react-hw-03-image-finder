@@ -1,5 +1,4 @@
 import ImgGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
-// import Modal from 'components/Modal/Modal';
 import css from './ImageGallery.module.css';
 
 const ImageGallery = ({ images, showModalImg }) => {
