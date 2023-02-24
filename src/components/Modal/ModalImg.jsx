@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ModalImg = ({ largeImageURL, tags }) => {
   return (
     <>
@@ -7,3 +9,8 @@ const ModalImg = ({ largeImageURL, tags }) => {
 };
 
 export default ModalImg;
+
+ModalImg.propTypes = {
+  tags: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+};
